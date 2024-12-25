@@ -12,9 +12,9 @@ import AccountPage from "@pages/profile/ProfilePage";
 
 function App() {
   return (
-    <div className="flex h-full w-full flex-col">
+    <div className="flex h-full w-full flex-col relative">
       <BrowserRouter>
-        <div id="main" className="flex-1">
+        <div id="main" className="flex-1 overflow-auto">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/search" element={<SearchingPage />} />
@@ -23,7 +23,7 @@ function App() {
           </Routes>
         </div>
 
-        <div id="navigation" className=" px-4 py-1.5">
+        <div id="navigation" className=" px-4 py-1.5 absolute bottom-0 w-full bg-white shadow-md">
           <div className="flex h-full w-full justify-between gap-2">
             <NavigationIcon icon={RiHome6Line} text="Trang chủ" to={"/"} />
             <NavigationIcon icon={IoSearchSharp} text="Tra cứu" to="/search" />
