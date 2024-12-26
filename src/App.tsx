@@ -23,7 +23,7 @@ function App() {
           </Routes>
         </div>
 
-        <div id="navigation" className=" px-4 py-1.5 absolute bottom-0 w-full bg-white shadow-md">
+        <div id="navigation" className=" px-4 py-1.5 absolute bottom-0 w-full bg-white shadow-md z-50">
           <div className="flex h-full w-full justify-between gap-2">
             <NavigationIcon icon={RiHome6Line} text="Trang chủ" to={"/"} />
             <NavigationIcon icon={IoSearchSharp} text="Tra cứu" to="/search" />
