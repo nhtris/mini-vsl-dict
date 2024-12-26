@@ -1,10 +1,24 @@
 import { LuSearch } from "react-icons/lu";
 import { IoArrowBackOutline } from "react-icons/io5";
 import StackLayout from "@/components/stack/StackLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import quickSearchWords from "@/api/search/quickSearchWords";
 
 export default function SearchingPage() {
   const [openSearchStack, setOpenSearchStack] = useState(false);
+
+  useEffect(() => {
+    async function search() {
+      try {
+        const resp = await quickSearchWords('hel')
+        console.log(resp)
+      } catch(error) {
+        console.log(error)
+      }
+    }
+
+    search()
+  }, [])
 
   return (
     <div>
