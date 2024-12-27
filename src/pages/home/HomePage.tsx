@@ -1,38 +1,28 @@
 import { Transition } from "@headlessui/react";
 import { useState } from "react";
-import clsx from "clsx";
-
-import Carousel from "react-multi-carousel";
+import RotateLoader from "react-spinners/RotateLoader";
 import "react-multi-carousel/lib/styles.css";
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 export default function HomePage() {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [color, setColor] = useState("#ffffff");
 
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
   return (
-    <Carousel responsive={responsive} arrows={false} autoPlay={true}>
-      <div>Item 1</div>
-      <div>Item 2</div>
-      <div>Item 3</div>
-      <div>Item 4</div>
-    </Carousel>
+    <RotateLoader
+      speedMultiplier={0.5}
+      color={"#a2a2a2"}
+      loading={loading}
+      cssOverride={override}
+      // size={150}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
   );
 }

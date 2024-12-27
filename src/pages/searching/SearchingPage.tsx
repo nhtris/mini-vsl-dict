@@ -5,6 +5,8 @@ import searchWordApi from "@/api/search/searchWordApi";
 import Word from "@/types/words";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Loading from "@/components/transaction/Loading";
+import EasyTransaction from "@/components/transaction/EasyTransaction";
 
 const responsive = {
   superLargeDesktop: {
@@ -31,23 +33,35 @@ export default function SearchingPage() {
 
   const [wordText, setWordText] = useState("");
   const [word, setWord] = useState<Word | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSearchWord = async (textSearch: string) => {
+    setIsLoading(true);
+    setWord(null);
     setWordText(textSearch);
     setOpenSearchStack(false);
-    const wordSearchResp = await searchWordApi(textSearch || "");
-    if (wordSearchResp.isSuccess) {
-      if (wordSearchResp.data) {
-        setWord(wordSearchResp.data);
+
+    try {
+      const wordSearchResp = await searchWordApi(textSearch || "");
+      if (wordSearchResp.isSuccess) {
+        if (wordSearchResp.data) {
+          setWord(wordSearchResp.data);
+        } else {
+          // showInfoNotification("Word not found");
+          setWord(null);
+        }
       } else {
-        // showInfoNotification("Word not found");
-        setWord(null);
+        // if (wordSearchResp.error === NetworkError) {
+        //   setHasNetworkError(true);
+        // }
+        // handleShowErrorsNotification(wordSearchResp);
       }
-    } else {
-      // if (wordSearchResp.error === NetworkError) {
-      //   setHasNetworkError(true);
-      // }
-      // handleShowErrorsNotification(wordSearchResp);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
   };
 
@@ -84,36 +98,43 @@ export default function SearchingPage() {
         onClose={() => setOpenSearchStack(false)}
         onSearch={onSearchWord}
       />
+      <div>
+        <EasyTransaction show={isLoading}>
+          <Loading />
+        </EasyTransaction>
 
-      <section className="bg-white">
-        {word && word.imageUrls && (
-          // <div className="w-full bg-black">
-          <Carousel
-            responsive={responsive}
-            arrows={false}
-            autoPlay={true}
-            showDots={true}
-            rewind={true}
-          >
-            {word.imageUrls.map((url, index) => (
-              <img
-                key={index}
-                className="aspect-[4/3] object-contain"
-                src={url}
-                alt={word.eng}
-              />
-            ))}
+        <EasyTransaction show={!isLoading}>
+          <section className="bg-white">
+            {word && word.imageUrls && (
+              // <div className="w-full bg-black">
+              <Carousel
+                responsive={responsive}
+                arrows={false}
+                autoPlay={true}
+                showDots={true}
+                rewind={true}
+              >
+                {word.imageUrls.map((url, index) => (
+                  <img
+                    key={index}
+                    className="aspect-[4/3] object-contain"
+                    src={url}
+                    alt={word.eng}
+                  />
+                ))}
 
-            {/* <img
+                {/* <img
               className="aspect-[4/3] object-contain"
               src={word.imageUrls[0]}
               alt={word.eng}
             /> */}
-          </Carousel>
-          // </div>
-        )}
-      </section>
-      {JSON.stringify(word)}
+              </Carousel>
+              // </div>
+            )}
+          </section>
+          {/* {JSON.stringify(word)} */}
+        </EasyTransaction>
+      </div>
     </div>
   );
 }
