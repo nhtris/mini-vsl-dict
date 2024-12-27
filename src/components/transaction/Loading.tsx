@@ -11,7 +11,7 @@ import "react-multi-carousel/lib/styles.css";
 
 export default function Loading() {
   return (
-    <div className="flex justify-center items-center mt-8">
+    <div className="flex min-h-80 items-center justify-center">
       <RotateLoader
         speedMultiplier={0.5}
         color={"#a2a2a2"}

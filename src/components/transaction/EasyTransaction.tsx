@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 export default function EasyTransaction({
   show,
@@ -8,9 +8,21 @@ export default function EasyTransaction({
   show: boolean;
   children: ReactNode;
 }) {
+  const [show2, setShow2] = useState(false);
+
+  useEffect(() => {
+    if (show) {
+      setTimeout(() => {
+        setShow2(show);
+      }, 300);
+    } else {
+      setShow2(show);
+    }
+  }, [show]);
+
   return (
-    <Transition show={show}>
-      <div className="transition duration-300 ease-in data-[closed]:opacity-0">
+    <Transition show={show2}>
+      <div className="transition duration-500 ease-in data-[closed]:opacity-0">
         {children}
       </div>
     </Transition>
