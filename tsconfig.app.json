@@ -29,6 +29,7 @@
       "@utils/*": ["src/utils/*"],
       "@types/*": ["src/types/*"],
       "@api/*": ["src/api/*"],
+      "@store/*": ["src/store/*"],
     }
   },
   "include": ["src"]
