@@ -15,23 +15,40 @@ import { useRef } from "react";
 function App() {
   const location = useLocation();
   const nodeRef = useRef(null);
+
   return (
     <div className="relative flex h-full w-full flex-col">
       {/* <BrowserRouter> */}
       <div id="main" className="flex-1 overflow-auto">
         <SwitchTransition>
           <CSSTransition
-            key={location.key}
+            key={location.pathname}
             classNames="page"
             timeout={400}
             nodeRef={nodeRef}
+            unmountOnExit
           >
-            <div ref={nodeRef} className="w-full h-full">
+            <div ref={nodeRef} className="h-full w-full">
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/search" element={<SearchingPage />} />
-                <Route path="/library" element={<LibraryPage />} />
-                <Route path="/account" element={<AccountPage />} />
+                <Route key={"home"} id="home" path="/" element={<HomePage />} />
+                <Route
+                  key={"search"}
+                  id="search"
+                  path="/search"
+                  element={<SearchingPage />}
+                />
+                <Route
+                  key={"library"}
+                  id="library"
+                  path="/library"
+                  element={<LibraryPage />}
+                />
+                <Route
+                  key={"account"}
+                  id="account"
+                  path="/account"
+                  element={<AccountPage />}
+                />
               </Routes>
             </div>
           </CSSTransition>
