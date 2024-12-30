@@ -1,4 +1,3 @@
-import { LuSearch } from "react-icons/lu";
 import { useState } from "react";
 import SearchingStack from "./stack/SearchingStack";
 import searchWordApi from "@/api/search/searchWordApi";
@@ -7,6 +6,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Loading from "@/components/transaction/Loading";
 import EasyTransaction from "@/components/transaction/EasyTransaction";
+import SearchAreaBtn from "@/components/element/SearchAreaBtn";
 
 const responsive = {
   superLargeDesktop: {
@@ -84,23 +84,11 @@ export default function SearchingPage() {
             </div>
           </div>
           <div className="shadow-xs sticky top-0 z-10 bg-white pb-5 pt-3">
-            <div className="px-2">
-              <button
-                className="w-full"
-                onClick={() => {
-                  setOpenSearchStack(!openSearchStack);
-                }}
-              >
-                <div className="mx-auto flex max-w-md items-center overflow-hidden rounded-md border-2 border-blue-900 px-2.5 py-2.5">
-                  <LuSearch className="h-7 w-7 text-blue-900" />
-                  <div className="px-2">
-                    <span className="text-md font-medium text-gray-400">
-                      Bạn muốn tra gì
-                    </span>
-                  </div>
-                </div>
-              </button>
-            </div>
+            <SearchAreaBtn
+              onClick={() => {
+                setOpenSearchStack(!openSearchStack);
+              }}
+            />
           </div>
           <div>
             {isLoading && (

@@ -31,3 +31,8 @@ body,
     opacity 300ms,
     transform 300ms;
 }
+
+
+.transition-height {
+  transition: height 0.5s ease;
+}

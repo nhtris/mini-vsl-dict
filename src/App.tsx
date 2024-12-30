@@ -26,7 +26,7 @@ function App() {
             timeout={400}
             nodeRef={nodeRef}
           >
-            <div ref={nodeRef}>
+            <div ref={nodeRef} className="w-full h-full">
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/search" element={<SearchingPage />} />
