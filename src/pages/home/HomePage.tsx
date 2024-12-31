@@ -1,8 +1,4 @@
 import SearchAreaBtn from "@/components/element/SearchAreaBtn";
-import { useState } from "react";
-import { useSwipeable } from "react-swipeable";
-import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
-import WordFolder from "./components/WordFolder";
 // import clsx from "clsx";
 import BottomSheet from "./components/BottomSheet";
 

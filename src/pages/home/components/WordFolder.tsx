@@ -2,6 +2,7 @@ import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 import { useState } from "react";
 import clsx from "clsx";
 import { WordFolderNew } from "@/types/words/new";
+import { Link } from "react-router";
 
 export default function WordFolder({ folder }: { folder: WordFolderNew }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -12,10 +13,13 @@ export default function WordFolder({ folder }: { folder: WordFolderNew }) {
           <div className="text-xl font-semibold">{folder.name}</div>
           <div className="flex gap-1">
             {folder.tags.map((tag, index) => (
-              <div key={index} className="rounded border  px-0.5 text-gray-400 font-medium pt-0.5">
+              <div
+                key={index}
+                className="rounded border px-0.5 pt-0.5 font-medium text-gray-400"
+              >
                 #{tag}
               </div>
-            ))}  
+            ))}
           </div>
         </div>
 
@@ -43,7 +47,9 @@ export default function WordFolder({ folder }: { folder: WordFolderNew }) {
         {/* {JSON.stringify(isExpanded)} */}
         {folder.words.map((word, index) => (
           <div key={index} className="border-b border-gray-300 px-3 py-1">
-            {word}
+            <Link to="/search" state={{ wordText: word }}>
+              {word}
+            </Link>
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchingStack from "./stack/SearchingStack";
 import searchWordApi from "@/api/search/searchWordApi";
 import Word from "@/types/words";
@@ -7,6 +7,10 @@ import "react-multi-carousel/lib/styles.css";
 import Loading from "@/components/transaction/Loading";
 import EasyTransaction from "@/components/transaction/EasyTransaction";
 import SearchAreaBtn from "@/components/element/SearchAreaBtn";
+import { useLocation } from "react-router";
+import ImageCard from "./components/word/ImageCard";
+import HeaderDefine from "./components/word/HeaderDefine";
+import GroupDefine from "./components/word/GroupDefine";
 
 const responsive = {
   superLargeDesktop: {
@@ -29,16 +33,22 @@ const responsive = {
 };
 
 export default function SearchingPage() {
+  const location = useLocation();
+
+  const { wordText } = (location.state as { wordText: string | null }) || {
+    wordText: null,
+  };
+
   const [openSearchStack, setOpenSearchStack] = useState(false);
 
-  const [wordText, setWordText] = useState("");
+  // const [wordText, setWordText] = useState("");
   const [word, setWord] = useState<Word | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const onSearchWord = async (textSearch: string) => {
     setIsLoading(true);
     setWord(null);
-    setWordText(textSearch);
+    // setWordText(textSearch);
     setOpenSearchStack(false);
 
     try {
@@ -64,6 +74,12 @@ export default function SearchingPage() {
       }, 2000);
     }
   };
+
+  useEffect(() => {
+    if (wordText) {
+      onSearchWord(wordText);
+    }
+  }, [wordText]);
 
   return (
     <div>
@@ -109,12 +125,13 @@ export default function SearchingPage() {
                     rewind={true}
                   >
                     {word.imageUrls.map((url, index) => (
-                      <img
-                        key={index}
-                        className="aspect-[5/3] object-contain"
-                        src={url}
-                        alt={word.eng}
-                      />
+                      // <img
+                      //   key={index}
+                      //   className="aspect-[5/3] object-contain"
+                      //   src={url}
+                      //   alt={word.eng}
+                      // />
+                      <ImageCard key={index} image={url} />
                     ))}
 
                     {/* <img
@@ -126,6 +143,18 @@ export default function SearchingPage() {
                   // </div>
                 )}
               </section>
+
+              {word && (
+                <section>
+                  <div className="px-2">
+                    <GroupDefine
+                      dictionary={word.dictionary}
+                      generalDefine={{ eng: word.eng, vie: word.viet }}
+                    />
+                  </div>
+                </section>
+              )}
+
               {/* {JSON.stringify(word)} */}
             </EasyTransaction>
           </div>
