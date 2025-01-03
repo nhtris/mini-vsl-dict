@@ -1,54 +1,90 @@
 export const wordCollections = [
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["duolingo", "basic"],
     name: "lesson 1",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "hello", "world", "apple", "banana", "computer", 
+      "book", "chair", "table", "dog", "cat"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["toeic", "travel", "airport"],
     name: "lesson 2",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "airport", "ticket", "luggage", "passport", "destination", 
+      "boarding", "arrival", "departure", "hotel", "tourist"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["duolingo", "toeic", "business"],
     name: "lesson 3",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "meeting", "agenda", "manager", "deadline", "project", 
+      "presentation", "budget", "negotiation", "client", "strategy"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["technology"],
     name: "lesson 4",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "internet", "software", "hardware", "network", "database", 
+      "algorithm", "coding", "programming", "cloud", "cybersecurity"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["education", "learning"],
     name: "lesson 5",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "student", "teacher", "university", "exam", "homework", 
+      "lecture", "assignment", "classroom", "degree", "scholarship"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["nature", "climate", "wildlife"],
     name: "lesson 6",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "forest", "river", "mountain", "wildlife", "climate", 
+      "ocean", "desert", "rainforest", "ecosystem", "habitat"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["food", "cooking"],
     name: "lesson 7",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "breakfast", "lunch", "dinner", "vegetables", "dessert", 
+      "recipe", "kitchen", "chef", "beverage", "snack"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["health", "fitness"],
     name: "lesson 8",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "doctor", "hospital", "medicine", "exercise", "nutrition", 
+      "vaccine", "treatment", "disease", "wellness", "recovery"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["sports", "training"],
     name: "lesson 9",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "soccer", "basketball", "tennis", "training", "tournament", 
+      "player", "coach", "stadium", "championship", "fitness"
+    ],
   },
   {
-    tags: ["duolingo", "toeic"],
+    tags: ["entertainment", "art", "music"],
     name: "lesson 10",
-    words: ["hello", "world", "searching", "toeic", "technology"],
+    words: [
+      "movie", "music", "concert", "theater", "painting", 
+      "sculpture", "gallery", "comedy", "drama", "festival"
+    ],
+  },
+  {
+    tags: ["finance", "investment"],
+    name: "lesson 11",
+    words: [
+      "bank", "money", "credit", "loan", "interest", 
+      "mortgage", "investment", "profit", "savings", "debt"
+    ],
   },
 ];
-
-// export wordCollections;

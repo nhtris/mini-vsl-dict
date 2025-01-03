@@ -40,7 +40,7 @@ export default function WordFolder({ folder }: { folder: WordFolderNew }) {
       </div>
       <div
         className={clsx(
-          "overflow-hidden transition-all duration-1000",
+          "overflow-hidden transition-all duration-1000 flex flex-wrap",
           isExpanded ? "max-h-screen" : "max-h-0",
         )}
       >

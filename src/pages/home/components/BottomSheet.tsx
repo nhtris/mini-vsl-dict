@@ -53,15 +53,15 @@ export default function BottomSheet() {
   return (
     <div
       className={clsx(
-        "absolute bottom-0 mb-12 w-full rounded-t-xl border-t-4 border-gray-300 bg-gray-50 shadow-lg transition-all duration-500",
+        "absolute bottom-0 mb-12 w-full rounded-t-xl border-t-2 shadow-2xl border-gray-300 bg-teal-50 shadow-red-500 transition-all duration-500",
         bottomSheetStatusOnTop ? "overflow-auto" : "overflow-hidden",
       )}
       style={{ top: `${bottomSheetTop}px` }}
       // onClick={() => setBottomSheetStatus(!bottomSheetStatus)}
     >
-      <div className="relative">
+      <div className="relative ">
         <div
-          className="sticky top-0 z-10 w-full bg-gray-50 py-1 pt-2"
+          className="sticky top-0 z-10 w-full bg-teal-50 py-1 pt-2"
           {...handlers}
         >
           <div className="flex justify-center">
