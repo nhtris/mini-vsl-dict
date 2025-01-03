@@ -11,7 +11,7 @@ import {
   REGISTER,
 } from "redux-persist/es/constants";
 // import accountReducer from "./auth/slice";
-// import wordsHistoryReducer from "./words/history/slice";
+import wordsHistoryReducer from "./words/history/slice";
 import wordCollectionReducer from "./words/collections/slice";
 // import typingCountReducer from "./words/typing-count/slice";
 // import metaReducer from "./meta/slice";
@@ -25,7 +25,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
 //   meta: metaReducer,
 //   account: accountReducer,
-//   history: wordsHistoryReducer,
+  history: wordsHistoryReducer,
   collection: wordCollectionReducer,
 //   typingCount: typingCountReducer,
 });

@@ -7,7 +7,7 @@ import { Link } from "react-router";
 export default function WordFolder({ folder }: { folder: WordFolderNew }) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <div className="h-fit w-full rounded border border-gray-400 py-5">
+    <div className="h-fit w-full rounded-sm border border-gray-400 py-5">
       <div className="flex justify-between px-2">
         <div className="flex gap-2">
           <div className="text-xl font-semibold">{folder.name}</div>
@@ -15,7 +15,7 @@ export default function WordFolder({ folder }: { folder: WordFolderNew }) {
             {folder.tags.map((tag, index) => (
               <div
                 key={index}
-                className="rounded border px-0.5 pt-0.5 font-medium text-gray-400"
+                className="rounded px-0.5 pt-0.5 font-medium text-gray-400"
               >
                 #{tag}
               </div>

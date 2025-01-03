@@ -13,7 +13,9 @@ export default function TranslationCmpt({ wordNode }: { wordNode: WordNode }) {
         <div>{wordNode.eng}</div>
         <div
           className={classNames(
-            showTranslation ? "block" : "hidden",
+            "overflow-hidden transition-all duration-700",
+            showTranslation ? "max-h-screen" : "max-h-0",
+            // showTranslation ? "block" : "hidden",
             "text-gray-500 dark:text-gray-400",
           )}
         >

@@ -5,10 +5,13 @@ import WordFolder from "./WordFolder";
 import clsx from "clsx";
 import { wordCollections } from "@/data/wordsColection";
 
+const BottomSheetHeight1 = 100;
+const BottomSheetHeight2 = 550;
+
 export default function BottomSheet() {
   const [bottomSheetStatusOnTop, setBottomSheetStatusOnTop] = useState(false);
   // const [bottomSheetHeight, setBottomSheetHeight] = useState(500);
-  const [bottomSheetTop, setBottomSheetTop] = useState(500);
+  const [bottomSheetTop, setBottomSheetTop] = useState(BottomSheetHeight2);
 
   const handlers = useSwipeable({
     onSwipedUp: (event) => {
@@ -26,7 +29,10 @@ export default function BottomSheet() {
           console.log("prevHeight:", prevHeight);
           console.log("eventData.deltaY:", eventData.deltaY);
           const newHeight = prevHeight + eventData.deltaY;
-          return Math.max(100, Math.min(newHeight, 500)); // Giới hạn chiều cao từ 100px đến 500px
+          return Math.max(
+            BottomSheetHeight1,
+            Math.min(newHeight, BottomSheetHeight2),
+          ); // Giới hạn chiều cao từ 100px đến 500px
         });
       }
     },
@@ -34,10 +40,10 @@ export default function BottomSheet() {
       // eventData.event.preventDefault();
       console.log("Swiped event completed:", eventData);
       if (bottomSheetTop < 180) {
-        setBottomSheetTop(100);
+        setBottomSheetTop(BottomSheetHeight1);
         setBottomSheetStatusOnTop(true);
       } else {
-        setBottomSheetTop(500);
+        setBottomSheetTop(BottomSheetHeight2);
         setBottomSheetStatusOnTop(false);
       }
       // Thực hiện các hành động khác sau khi vuốt xong
@@ -47,7 +53,7 @@ export default function BottomSheet() {
   return (
     <div
       className={clsx(
-        "absolute bottom-0 mb-12 w-full rounded-t-lg border bg-gray-200 shadow-lg transition-all duration-500",
+        "absolute bottom-0 mb-12 w-full rounded-t-xl border-t-4 border-gray-300 bg-gray-50 shadow-lg transition-all duration-500",
         bottomSheetStatusOnTop ? "overflow-auto" : "overflow-hidden",
       )}
       style={{ top: `${bottomSheetTop}px` }}
@@ -55,7 +61,7 @@ export default function BottomSheet() {
     >
       <div className="relative">
         <div
-          className="sticky top-0 z-10 w-full bg-gray-200 py-1 pt-2"
+          className="sticky top-0 z-10 w-full bg-gray-50 py-1 pt-2"
           {...handlers}
         >
           <div className="flex justify-center">
@@ -69,22 +75,22 @@ export default function BottomSheet() {
 
           <div className="text-md px-2 font-semibold">Danh mục</div>
           <div className="flex gap-1 px-2">
-            <div className="rounded border border-gray-600 px-1 text-gray-500">
+            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
               #technology
             </div>
-            <div className="rounded border border-gray-600 px-1 text-gray-500">
+            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
               #toeic
             </div>
-            <div className="rounded border border-gray-600 px-1 text-gray-500">
+            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
               #duolingo
             </div>
-            <div className="rounded border border-gray-600 px-1 text-gray-500">
+            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
               #hello
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 py-3 px-2">
+        <div className="flex flex-col gap-2 px-2 py-3">
           {wordCollections.map((folder, index) => (
             <WordFolder key={index} folder={folder} />
           ))}
