@@ -22,7 +22,7 @@ export default function EasyTransaction({
 
   return (
     <Transition show={show2}>
-      <div className="transition duration-500 ease-in data-[closed]:opacity-0">
+      <div className="transition duration-300 ease-in data-[closed]:opacity-0 h-full">
         {children}
       </div>
     </Transition>

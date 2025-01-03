@@ -4,6 +4,7 @@ import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import WordFolder from "./WordFolder";
 import clsx from "clsx";
 import { wordCollections } from "@/data/wordsColection";
+import { classNames } from "@/utils/ui";
 
 const BottomSheetHeight1 = 100;
 const BottomSheetHeight2 = 550;
@@ -12,6 +13,10 @@ export default function BottomSheet() {
   const [bottomSheetStatusOnTop, setBottomSheetStatusOnTop] = useState(false);
   // const [bottomSheetHeight, setBottomSheetHeight] = useState(500);
   const [bottomSheetTop, setBottomSheetTop] = useState(BottomSheetHeight2);
+
+  const allWordTags = wordCollections.map((folder) => folder.tags).flat();
+
+  const [choicedTags, setChoicedTags] = useState<string[]>(allWordTags);
 
   const handlers = useSwipeable({
     onSwipedUp: (event) => {
@@ -50,16 +55,22 @@ export default function BottomSheet() {
     },
   });
 
+  const handingClickTag = (tag: string) => {
+    if (choicedTags.length === allWordTags.length) {
+      setChoicedTags([tag]);
+    }
+  };
+
   return (
     <div
       className={clsx(
-        "absolute bottom-0 mb-12 w-full rounded-t-xl border-t-2 shadow-2xl border-gray-300 bg-teal-50 shadow-red-500 transition-all duration-500",
+        "absolute bottom-0 mb-12 w-full rounded-t-xl border-t-2 border-gray-300 bg-teal-50 shadow-2xl shadow-red-500 transition-all duration-500",
         bottomSheetStatusOnTop ? "overflow-auto" : "overflow-hidden",
       )}
       style={{ top: `${bottomSheetTop}px` }}
       // onClick={() => setBottomSheetStatus(!bottomSheetStatus)}
     >
-      <div className="relative ">
+      <div className="relative">
         <div
           className="sticky top-0 z-10 w-full bg-teal-50 py-1 pt-2"
           {...handlers}
@@ -74,19 +85,16 @@ export default function BottomSheet() {
           </div>
 
           <div className="text-md px-2 font-semibold">Danh mục</div>
-          <div className="flex gap-1 px-2">
-            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
-              #technology
-            </div>
-            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
-              #toeic
-            </div>
-            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
-              #duolingo
-            </div>
-            <div className="rounded-sm border border-gray-300 px-1 text-gray-500">
-              #hello
-            </div>
+          <div className="flex gap-1 overflow-x-auto px-2 pb-1">
+            {allWordTags.map((tag, index) => (
+              <button
+                className={classNames("rounded-sm border border-gray-300 px-1 text-gray-500", choicedTags.includes(tag) ? "text-sky-600" : "")} 
+                key={index}
+                onClick={() => handingClickTag(tag)}
+              >
+                #{tag}
+              </button>
+            ))}
           </div>
         </div>
 

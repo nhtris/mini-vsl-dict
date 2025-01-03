@@ -1,42 +1,64 @@
 import SearchAreaBtn from "@/components/element/SearchAreaBtn";
-// import clsx from "clsx";
 import BottomSheet from "./components/BottomSheet";
 import { useSelector } from "react-redux";
 import { selectorWordHistory } from "@/store/words/history/selector";
 import HorizontalWordList from "./components/HorizontalWordList";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import SearchingStack from "@/pages/searching/stack/SearchingStack";
+import EasyTransaction from "@/components/transaction/EasyTransaction";
+import { useNavigate } from "react-router";
+// import MiniApp from 'dop-sdk-vtb'
 
 export default function HomePage() {
-  // const [bottomSheetStatusOnTop, setBottomSheetStatusOnTop] = useState(false);
-  // const [bottomSheetHeight, setBottomSheetHeight] = useState(500);
-  // const [bottomSheetTop, setBottomSheetTop] = useState(500);
+  const navigate = useNavigate();
 
+  const [openSearchStack, setOpenSearchStack] = useState(false);
   const wordsHistory = useSelector(selectorWordHistory);
 
-  const suggestedWords = useMemo(()=>  [...wordsHistory].reverse(), [wordsHistory]) 
+  const suggestedWords = useMemo(
+    () => [...wordsHistory].reverse(),
+    [wordsHistory],
+  );
+
+  const onSearchWord = async (textSearch: string) => {
+    navigate("/search", { state: { wordText: textSearch } });
+  };
 
   return (
-    <div className="relative flex h-full w-full flex-col">
-      <section className="pt-4">
-        <SearchAreaBtn onClick={() => console.log("Search")} />
-      </section>
+    <>
+      <SearchingStack
+        open={openSearchStack}
+        onClose={() => setOpenSearchStack(false)}
+        onSearch={onSearchWord}
+      />
+      <EasyTransaction show={!openSearchStack}>
+        <div className="relative flex h-full w-full flex-col">
+          <section className="pt-4">
+            <SearchAreaBtn
+              onClick={() => {
+                setOpenSearchStack(!openSearchStack);
+              }}
+            />
+          </section>
 
-      {/* history  */}
-      <section className="pt-8">
-        <HorizontalWordList title="Bạn có nhớ" words={wordsHistory} />
-      </section>
+          {/* history  */}
+          <section className="pt-8">
+            <HorizontalWordList title="Bạn có nhớ" words={wordsHistory} />
+          </section>
 
-      <section className="pt-5">
-        <HorizontalWordList
-          title="Có thể bạn quan tâm"
-          words={suggestedWords}
-        />
-      </section>
+          <section className="pt-5">
+            <HorizontalWordList
+              title="Có thể bạn quan tâm"
+              words={suggestedWords}
+            />
+          </section>
 
-      {/* Modal Bottom Sheet */}
-      <section className="">
-        <BottomSheet />
-      </section>
-    </div>
+          {/* Modal Bottom Sheet */}
+          <section className="">
+            <BottomSheet />
+          </section>
+        </div>
+      </EasyTransaction>
+    </>
   );
 }

@@ -1,4 +1,3 @@
-import { LuSearch } from "react-icons/lu";
 import { IoArrowBackOutline } from "react-icons/io5";
 import StackLayout from "@/components/stack/StackLayout";
 import { useEffect, useState } from "react";
