@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSwipeable } from "react-swipeable";
 import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import WordFolder from "./WordFolder";
@@ -61,10 +61,22 @@ export default function BottomSheet() {
     }
   };
 
+  const onClickTopButtomSheet = () => {
+    if (bottomSheetStatusOnTop) {
+      setBottomSheetStatusOnTop(false);
+      setBottomSheetTop(BottomSheetHeight2);
+    } else {
+      setBottomSheetStatusOnTop(true);
+      setBottomSheetTop(BottomSheetHeight1);
+    }
+  };
+
+
+
   return (
     <div
       className={clsx(
-        "absolute bottom-0 mb-12 w-full rounded-t-xl border-t-2 border-gray-300 bg-teal-50 shadow-2xl shadow-red-500 transition-all duration-500",
+        "absolute bottom-0 mb-12 w-full rounded-t-xl border-t-2 border-gray-300 bg-teal-50 shadow-2xl shadow-gray-300 transition-all duration-1000",
         bottomSheetStatusOnTop ? "overflow-auto" : "overflow-hidden",
       )}
       style={{ top: `${bottomSheetTop}px` }}
@@ -74,6 +86,7 @@ export default function BottomSheet() {
         <div
           className="sticky top-0 z-10 w-full bg-teal-50 py-1 pt-2"
           {...handlers}
+          onClick={onClickTopButtomSheet}
         >
           <div className="flex justify-center">
             <MdOutlineKeyboardDoubleArrowDown
@@ -88,7 +101,10 @@ export default function BottomSheet() {
           <div className="flex gap-1 overflow-x-auto px-2 pb-1">
             {allWordTags.map((tag, index) => (
               <button
-                className={classNames("rounded-sm border border-gray-300 px-1 text-gray-500", choicedTags.includes(tag) ? "text-sky-600" : "")} 
+                className={classNames(
+                  "rounded-sm border border-gray-300 px-1 text-gray-500",
+                  choicedTags.includes(tag) ? "text-sky-600" : "",
+                )}
                 key={index}
                 onClick={() => handingClickTag(tag)}
               >
@@ -97,7 +113,7 @@ export default function BottomSheet() {
             ))}
           </div>
         </div>
-
+    
         <div className="flex flex-col gap-2 px-2 py-3">
           {wordCollections.map((folder, index) => (
             <WordFolder key={index} folder={folder} />

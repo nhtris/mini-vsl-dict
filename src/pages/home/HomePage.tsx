@@ -32,7 +32,7 @@ export default function HomePage() {
         onSearch={onSearchWord}
       />
       <EasyTransaction show={!openSearchStack}>
-        <div className="relative flex h-full w-full flex-col">
+        <div className="flex h-full w-full flex-col">
           <section className="pt-4">
             <SearchAreaBtn
               onClick={() => {
@@ -54,7 +54,8 @@ export default function HomePage() {
           </section>
 
           {/* Modal Bottom Sheet */}
-          <section className="">
+          {/* className="fixed bottom-0 left-0 right-0" */}
+          <section >
             <BottomSheet />
           </section>
         </div>
