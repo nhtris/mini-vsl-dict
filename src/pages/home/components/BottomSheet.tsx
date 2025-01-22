@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import { MdOutlineKeyboardDoubleArrowDown } from "react-icons/md";
 import WordFolder from "./WordFolder";
@@ -19,14 +19,14 @@ export default function BottomSheet() {
   const [choicedTags, setChoicedTags] = useState<string[]>(allWordTags);
 
   const handlers = useSwipeable({
-    onSwipedUp: (event) => {
-      // event.event.preventDefault();
-      // setBottomSheetStatus(true);
-    },
-    onSwipedDown: (event) => {
-      // event.event.preventDefault();
-      // setBottomSheetStatus(false);
-    },
+    // onSwipedUp: (event) => {
+    //   // event.event.preventDefault();
+    //   // setBottomSheetStatus(true);
+    // },
+    // onSwipedDown: (event) => {
+    //   // event.event.preventDefault();
+    //   // setBottomSheetStatus(false);
+    // },
     onSwiping: (eventData) => {
       // eventData.event.preventDefault();
       if (eventData.dir === "Up" || eventData.dir === "Down") {
