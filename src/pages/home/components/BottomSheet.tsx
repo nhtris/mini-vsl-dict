@@ -23,12 +23,12 @@ export default function BottomSheet() {
     //   // event.event.preventDefault();
     //   // setBottomSheetStatus(true);
     // },
-    // onSwipedDown: (event) => {
-    //   // event.event.preventDefault();
-    //   // setBottomSheetStatus(false);
-    // },
+    onSwipedDown: (event) => {
+      event.event.preventDefault();
+      // setBottomSheetStatus(false);
+    },
     onSwiping: (eventData) => {
-      // eventData.event.preventDefault();
+      eventData.event.preventDefault();
       if (eventData.dir === "Up" || eventData.dir === "Down") {
         setBottomSheetTop((prevHeight) => {
           console.log("prevHeight:", prevHeight);
@@ -71,8 +71,6 @@ export default function BottomSheet() {
     }
   };
 
-
-
   return (
     <div
       className={clsx(
@@ -83,37 +81,37 @@ export default function BottomSheet() {
       // onClick={() => setBottomSheetStatus(!bottomSheetStatus)}
     >
       <div className="relative">
-        <div
+          <div
           className="sticky top-0 z-10 w-full bg-teal-50 py-1 pt-2"
-          {...handlers}
-          onClick={onClickTopButtomSheet}
-        >
-          <div className="flex justify-center">
-            <MdOutlineKeyboardDoubleArrowDown
-              className={clsx(
-                "h-5 w-5 transform transition-transform duration-1000",
-                bottomSheetStatusOnTop ? "" : "rotate-180",
-              )}
-            />
-          </div>
-
-          <div className="text-md px-2 font-semibold">Danh mục</div>
-          <div className="flex gap-1 overflow-x-auto px-2 pb-1">
-            {allWordTags.map((tag, index) => (
-              <button
-                className={classNames(
-                  "rounded-sm border border-gray-300 px-1 text-gray-500",
-                  choicedTags.includes(tag) ? "text-sky-600" : "",
+            {...handlers}
+            onClick={onClickTopButtomSheet}
+          >
+            <div className="flex justify-center">
+              <MdOutlineKeyboardDoubleArrowDown
+                className={clsx(
+                  "h-5 w-5 transform transition-transform duration-1000",
+                  bottomSheetStatusOnTop ? "" : "rotate-180",
                 )}
-                key={index}
-                onClick={() => handingClickTag(tag)}
-              >
-                #{tag}
-              </button>
-            ))}
+              />
+            </div>
+
+            <div className="text-md px-2 font-semibold">Danh mục</div>
+            <div className="flex gap-1 overflow-x-auto px-2 pb-1">
+              {allWordTags.map((tag, index) => (
+                <button
+                  className={classNames(
+                    "rounded-sm border border-gray-300 px-1 text-gray-500",
+                    choicedTags.includes(tag) ? "text-sky-600" : "",
+                  )}
+                  key={index}
+                  onClick={() => handingClickTag(tag)}
+                >
+                  #{tag}
+                </button>
+              ))}
           </div>
         </div>
-    
+
         <div className="flex flex-col gap-2 px-2 py-3">
           {wordCollections.map((folder, index) => (
             <WordFolder key={index} folder={folder} />

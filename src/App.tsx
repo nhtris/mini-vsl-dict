@@ -17,7 +17,9 @@ function App() {
   const nodeRef = useRef(null);
 
   return (
-    <div className="relative flex h-full w-full flex-col">
+    <div className="fixed h-full w-full">
+
+    <div className="fiexd flex h-full w-full flex-col">
       {/* <BrowserRouter> */}
       <div id="main" className="flex-1 overflow-auto">
         <SwitchTransition>
@@ -57,7 +59,7 @@ function App() {
 
       <div
         id="navigation"
-        className="absolute bottom-0 z-50 w-full bg-white px-4 py-1.5 shadow-md"
+        className="fixed bottom-0 z-50 w-full bg-white px-4 py-1.5 shadow-md"
       >
         <div className="flex h-full w-full justify-between gap-2">
           <NavigationIcon icon={RiHome6Line} text="Trang chủ" to={"/"} />
@@ -72,6 +74,8 @@ function App() {
       </div>
       {/* </BrowserRouter> */}
     </div>
+    </div>
+
   );
 }
 

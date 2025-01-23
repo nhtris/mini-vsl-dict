@@ -55,9 +55,12 @@ export default function HomePage() {
 
           {/* Modal Bottom Sheet */}
           {/* className="fixed bottom-0 left-0 right-0" */}
+          <div className="overflow-hidden" onWheel={(e) => e.stopPropagation()}>
           <section >
             <BottomSheet />
           </section>
+          </div>
+       
         </div>
       </EasyTransaction>
     </>
