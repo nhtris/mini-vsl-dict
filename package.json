@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "dop": "dop-dev",
-    "build": "tsc -b && vite build",
+    "build": "vite build && npm run zip",
+    "zip": "(cd dist; zip -r js-miniapp.zip ./*)",
     "lint": "eslint .",
     "preview": "vite preview"
   },
